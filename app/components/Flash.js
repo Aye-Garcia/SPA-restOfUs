@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Flash(props) {
+function Flash(props) {
   return (
     <div className="floating-alerts">
-      {props.msg.map((msg, index) => {
+      {props.messages.map((msg, index) => {
         return (
           <div
             key={index}
@@ -16,3 +16,4 @@ export default function Flash(props) {
     </div>
   );
 }
+export default Flash;

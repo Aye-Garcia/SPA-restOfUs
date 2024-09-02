@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import DispatchContext from "../DispatchContext";
 
-function HeaderLoggedIn(props) {
+function HeaderLoggedIn() {
   const avatarUrl = `https://api.dicebear.com/9.x/pixel-art/svg`;
+  const appDispatch = useContext(DispatchContext);
 
   function handleLoggedOut() {
-    props.setLoggedIn(false);
+    appDispatch({ type: "logout" });
     localStorage.removeItem("complexAppToken");
     localStorage.removeItem("complexAppUsername");
     localStorage.removeItem("complexAppAvatar");

@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Page from "./Page";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DispatchContext from "../DispatchContext";
 
-function CreatePost(props) {
+function CreatePost() {
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
   const navigate = useNavigate();
+  const appDispatch = useContext(DispatchContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,7 +18,7 @@ function CreatePost(props) {
         body,
         token: localStorage.getItem("complexAppToken"),
       });
-      props.addFlash("Well Done!");
+      appDispatch({ type: "flashMessage", value: "Well done!" });
       navigate(`/post/${response.data}`);
       console.log("Post Created!");
     } catch (e) {
